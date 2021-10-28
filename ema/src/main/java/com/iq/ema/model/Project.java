@@ -19,6 +19,14 @@ public class Project {
     public Project(){
 
     }
+
+    public long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(long projectId) {
+        this.projectId = projectId;
+    }
     public String getName() {
         return name;
     }

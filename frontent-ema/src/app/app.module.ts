@@ -11,7 +11,9 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 import { DetailsEmployeeComponent } from './details-employee/details-employee.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { ProjectListComponent } from './project-list/project-list.component';
-import { ProjectUpdateComponent } from './project-update/project-update.component';
+import { UpdateProjectComponent } from './update-project/update-project.component';
+import { DetailsProjectComponent } from './details-project/details-project.component';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { ProjectUpdateComponent } from './project-update/project-update.componen
     DetailsEmployeeComponent,
     CreateProjectComponent,
     ProjectListComponent,
-    ProjectUpdateComponent
+    UpdateProjectComponent,
+    DetailsProjectComponent
   ],
   imports: [
     BrowserModule,

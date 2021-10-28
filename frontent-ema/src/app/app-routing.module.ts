@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { CreateProjectComponent } from './create-project/create-project.component';
 import { DetailsEmployeeComponent } from './details-employee/details-employee.component';
+import { DetailsProjectComponent } from './details-project/details-project.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
+import { UpdateProjectComponent } from './update-project/update-project.component';
 
 const routes: Routes = [
   {path: 'employees',component: EmployeeListComponent},
@@ -14,6 +16,8 @@ const routes: Routes = [
   {path: 'employee-details/:id',component: DetailsEmployeeComponent},
   {path: 'create-project',component: CreateProjectComponent},
   {path: 'projects',component: ProjectListComponent},
+  {path: 'update-project/:projectId',component: UpdateProjectComponent},
+  {path: 'project-details/:projectId',component: DetailsProjectComponent},
   {path: '',redirectTo: 'employees',pathMatch: 'full'}
 ];
 

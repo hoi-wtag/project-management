@@ -24,5 +24,18 @@ export class ProjectListComponent implements OnInit {
       this.projects = data;
     });
   }
-  
+
+  updateProject(projectId: number){
+    this.router.navigate(['update-project',projectId]);
+  }
+
+  deleteProject(projectId: number){
+    this.projectServcie.deleteProject(projectId).subscribe( data =>{
+      this.getProjects();
+    }, error => console.log(error))
+  }
+
+  projectDetails(projectId: number){
+    this.router.navigate(['project-details',projectId]);
+  }
 }
