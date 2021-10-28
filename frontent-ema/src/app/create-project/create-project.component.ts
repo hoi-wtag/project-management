@@ -20,8 +20,13 @@ export class CreateProjectComponent implements OnInit {
   saveProject(){
     this.projectService.createProject(this.project).subscribe(data=>{
       console.log(data);
+      this.goToProjectList();
     },
     error => console.log(error));
+  }
+
+  goToProjectList(){
+    this.router.navigate(['/projects']);
   }
 
   onSubmit(){
