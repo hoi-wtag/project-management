@@ -11,15 +11,15 @@ import { ProjectService } from '../project.service';
 export class DetailsProjectComponent implements OnInit {
 
   projectId!: number;
-  project!: Project;
+  project: Project = new Project();
   constructor(private projectService: ProjectService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.projectId=this.route.snapshot.params['projectId'];
     this.projectService.getProjectById(this.projectId).subscribe(data => {
       this.project=data;
-    })
-
+      console.log(this.project);
+    });
   }
 
 }

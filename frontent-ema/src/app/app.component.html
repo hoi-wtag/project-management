@@ -1,10 +1,7 @@
 <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
   <ul class="navbar-nav">
     <li class="navbar-item">
-      <a routerLink="projects" routerLinkActive="active" class="nav-link">Poject List</a>
-    </li>
-    <li class="navbar-item">
-      <a routerLink="employees" routerLinkActive="active" class="nav-link">Employee List</a>
+      <a routerLink="" routerLinkActive="active" class="nav-link">Dashboard</a>
     </li>
     <li class="navbar-item">
       <a routerLink="create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
@@ -16,10 +13,10 @@
 </nav>
 
 <h1 class="text-center">{{title}}</h1>
-<div class="container">
+
   <router-outlet></router-outlet>
   <!-- <app-employee-list></app-employee-list> -->
-</div>
+
 
 <footer class= "footer">
   <div class= "container">

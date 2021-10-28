@@ -26,7 +26,7 @@ export class CreateProjectComponent implements OnInit {
   }
 
   goToProjectList(){
-    this.router.navigate(['/projects']);
+    this.router.navigate(['/']);
   }
 
   onSubmit(){
