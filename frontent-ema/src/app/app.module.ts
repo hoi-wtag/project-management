@@ -12,14 +12,18 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { UpdateProjectComponent } from './update-project/update-project.component';
 import { DetailsProjectComponent } from './details-project/details-project.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    EmployeeListComponent,
     CreateEmployeeComponent,
     UpdateEmployeeComponent,
     DetailsEmployeeComponent,
+    ProjectListComponent,
     CreateProjectComponent,
     UpdateProjectComponent,
     DetailsProjectComponent,

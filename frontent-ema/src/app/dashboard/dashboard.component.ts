@@ -29,38 +29,10 @@ export class DashboardComponent implements OnInit {
       this.getProjects();
     });
   }
-
-  updateEmployee(id : number){
-    this.router.navigate(['update-employee',id]);
-  }
-  deleteEmployee(id: number){
-    this.employeeService.deleteEmployee(id).subscribe( data =>{
-      this.getEmployees();
-    }, error => console.log(error))
-
-  }
-
-  employeeDetails(id : number){
-    this.router.navigate(['employee-details',id]);
-  }
   //// Projects ////
   private getProjects(){
     this.projectServcie.getProjectList().subscribe(data => {
       this.projects = data;
     });
-  }
-
-  updateProject(projectId: number){
-    this.router.navigate(['update-project',projectId]);
-  }
-
-  deleteProject(projectId: number){
-    this.projectServcie.deleteProject(projectId).subscribe( data =>{
-      this.getProjects();
-    }, error => console.log(error))
-  }
-
-  projectDetails(projectId: number){
-    this.router.navigate(['project-details',projectId]);
   }
 }

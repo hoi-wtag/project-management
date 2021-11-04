@@ -5,13 +5,17 @@ import { CreateProjectComponent } from './create-project/create-project.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DetailsEmployeeComponent } from './details-employee/details-employee.component';
 import { DetailsProjectComponent } from './details-project/details-project.component';
+import { EmployeeListComponent } from './employee-list/employee-list.component';
+import { ProjectListComponent } from './project-list/project-list.component';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { UpdateProjectComponent } from './update-project/update-project.component';
 
 const routes: Routes = [
+  {path: 'employees',component: EmployeeListComponent},
   {path: 'create-employee',component: CreateEmployeeComponent},
   {path: 'update-employee/:id',component: UpdateEmployeeComponent},
   {path: 'employee-details/:id',component: DetailsEmployeeComponent},
+  {path: 'projects',component: ProjectListComponent},
   {path: 'create-project',component: CreateProjectComponent},
   {path: 'update-project/:projectId',component: UpdateProjectComponent},
   {path: 'project-details/:projectId',component: DetailsProjectComponent},

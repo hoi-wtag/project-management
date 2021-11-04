@@ -25,6 +25,9 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
+  createProject(){
+    this.router.navigate(['create-project']);
+  }
   updateProject(projectId: number){
     this.router.navigate(['update-project',projectId]);
   }
