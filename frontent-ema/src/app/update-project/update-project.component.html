@@ -17,6 +17,10 @@
             <label>Description</label>
             <input type="text" class="form-control" id="description" [(ngModel)]= "project.description" name="description">
         </div>
+        <select class="form-select" name="employees" [(ngModel)]= "project.employees"  multiple="multiple">
+            <option *ngFor="let employee of employees" [value]="employee" >{{employee.firstName}}</option>
+        </select>
+        <br>
         <br>
         <button class="btn btn-success" type="submit">Submit</button>
     </form>

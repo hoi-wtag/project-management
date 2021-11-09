@@ -1,7 +1,9 @@
 package com.iq.ema.controller;
 
 import com.iq.ema.exceptions.ResourceNotFoundException;
+import com.iq.ema.model.Employee;
 import com.iq.ema.model.Project;
+import com.iq.ema.service.EmployeeService;
 import com.iq.ema.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
+    @Autowired
+    private EmployeeService employeeService;
     // Get all projects
 
     @GetMapping("/projects")
@@ -29,9 +33,9 @@ public class ProjectController {
 
     // create Project restapi
 
-    @PostMapping("/projects")
+    @PostMapping(path="/projects")
     public Project createProject(@RequestBody Project project){
-
+//        project.getEmployees().forEach(emp->emp.setProjects(List.of(project)));
         return projectService.save(project);
     }
 

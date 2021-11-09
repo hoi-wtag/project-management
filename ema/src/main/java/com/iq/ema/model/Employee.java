@@ -1,24 +1,33 @@
 package com.iq.ema.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Column;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long employeeId;
     @Column(name= "first_name")
     private String firstName;
     @Column(name= "last_name")
     private String lastName;
+
     @Column(name= "email_id")
     private String emailId;
+
+//    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH,CascadeType.MERGE,CascadeType.PERSIST},
+//    fetch = FetchType.LAZY)
+//    @JoinColumn(name="project_id")
+//    private Project project;
+
+//    @ManyToMany
+//    @JoinTable(name="project_employee",
+//            joinColumns = @JoinColumn(name = "employee_id"),
+//            inverseJoinColumns = @JoinColumn(name = "project_id")
+//    )
+//    private List<Project> projects;
 
     public Employee(){
 
@@ -29,14 +38,13 @@ public class Employee {
         this.emailId = emailId;
     }
 
-    public long getId() {
-        return id;
+    public long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setEmployeeId(long employeeId) {
+        this.employeeId = employeeId;
     }
-
     public String getFirstName() {
         return firstName;
     }
@@ -60,4 +68,12 @@ public class Employee {
     public void setEmailId(String emailId) {
         this.emailId = emailId;
     }
+
+//    public List<Project> getProjects() {
+//        return projects;
+//    }
+//
+//    public void setProjects(List<Project> projects) {
+//        this.projects = projects;
+//    }
 }

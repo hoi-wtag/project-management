@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 import { Project } from '../project';
 import { ProjectService } from '../project.service';
 
@@ -10,11 +12,16 @@ import { ProjectService } from '../project.service';
 })
 export class CreateProjectComponent implements OnInit {
 
+
   project: Project = new Project();
+  employees!: Employee[];
+  selectedEmployees!: number[];
   constructor(private projectService: ProjectService,
+    private employeeService: EmployeeService,
     private router:Router) { }
 
   ngOnInit(): void {
+    this.getEmployees();
   }
 
   saveProject(){
@@ -32,5 +39,11 @@ export class CreateProjectComponent implements OnInit {
   onSubmit(){
     this.saveProject();
     console.log(this.project);
+  }
+
+  private getEmployees(){
+    this.employeeService.getEmployeesList().subscribe(data => {
+      this.employees = data;
+    });
   }
 }

@@ -5,6 +5,7 @@ import com.iq.ema.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +16,11 @@ public class EmployeeService {
     public Iterable<Employee> getAll() {
 
         return empRepo.findAll();
+    }
+
+    public Iterable<Employee> getAllById(List<Long> employees) {
+
+        return empRepo.findAllById(employees);
     }
 
     public Employee save(Employee employee) {

@@ -34,11 +34,11 @@ export class EmployeeListComponent implements OnInit {
       this.employees = data;
     });
   }
-  updateEmployee(id : number){
-    this.router.navigate(['update-employee',id]);
+  updateEmployee(employeeId : number){
+    this.router.navigate(['update-employee',employeeId]);
   }
-  deleteEmployee(id: number){
-    this.employeeService.deleteEmployee(id).subscribe( data =>{
+  deleteEmployee(employeeId: number){
+    this.employeeService.deleteEmployee(employeeId).subscribe( data =>{
       this.getEmployees();
     }, error => console.log(error))
 
@@ -48,7 +48,7 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['create-employee']);
   }
 
-  employeeDetails(id : number){
-    this.router.navigate(['employee-details',id]);
+  employeeDetails(employeeId : number){
+    this.router.navigate(['employee-details',employeeId]);
   }
 }

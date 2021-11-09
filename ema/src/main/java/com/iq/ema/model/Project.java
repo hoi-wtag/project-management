@@ -1,12 +1,15 @@
 package com.iq.ema.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "projects")
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long projectId;
 
     private String name;
@@ -15,6 +18,15 @@ public class Project {
 
     private String description;
 
+//    @OneToMany(mappedBy = "project")
+
+    @ManyToMany
+    @JoinTable(name="project_employee",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "employee_id")
+    )
+
+    private List<Employee> employees;
 
     public Project(){
 
@@ -49,5 +61,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Employee } from '../employee';
+import { EmployeeService } from '../employee.service';
 import { Project } from '../project';
 import { ProjectService } from '../project.service';
 
@@ -11,8 +13,10 @@ import { ProjectService } from '../project.service';
 export class UpdateProjectComponent implements OnInit {
 
   projectId!: number;
+  employees!: Employee[];
   project: Project = new Project();
   constructor(private projectService: ProjectService,
+    private employeeService: EmployeeService,
     private route: ActivatedRoute,private router:Router) { }
 
   ngOnInit(): void {
@@ -20,6 +24,7 @@ export class UpdateProjectComponent implements OnInit {
     this.projectService.getProjectById(this.projectId).subscribe(data => {
       this.project=data;
     },error => console.log(error));
+    this.getEmployees();
   }
 
   goToProjectList(){
@@ -29,5 +34,11 @@ export class UpdateProjectComponent implements OnInit {
     this.projectService.updateProject(this.projectId,this.project).subscribe(data=>{
       this.goToProjectList();
     },error => console.log(error));
+  }
+
+  private getEmployees(){
+    this.employeeService.getEmployeesList().subscribe(data => {
+      this.employees = data;
+    });
   }
 }
