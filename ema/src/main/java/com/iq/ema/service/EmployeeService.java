@@ -1,5 +1,6 @@
 package com.iq.ema.service;
 
+import com.iq.ema.dto.EmployeeProject;
 import com.iq.ema.model.Employee;
 import com.iq.ema.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,5 +40,8 @@ public class EmployeeService {
 
     }
 
+    public List<EmployeeProject> employeeProjects() {
+        return empRepo.employeeProjects();
+    }
 
 }

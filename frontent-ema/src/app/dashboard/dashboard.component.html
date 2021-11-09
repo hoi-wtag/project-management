@@ -1,44 +1,55 @@
-<div class="container-fluid">
+<div class="container-fluid mb-5">
 <div class="row">
-<div class="col-md-6">
-        <h2 style="margin-left: 240px;">Employee List</h2>
+    <div class="col-md-6">
+        <h2 style="margin-left: 240px;">Project List</h2>
         <table class="table table-bordered">
             <thead class="table-dark">
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email Id</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let employee of employees">
-                    <td>{{employee.firstName}}</td>
-                    <td>{{employee.lastName}}</td>
-                    <td>{{employee.emailId}}</td>
-                </tr>
-            </tbody>
-        
-        </table>
+            <tr>
+                <th>Name</th>
+                <th>Stage</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let project of projects">
+                <td>{{project.name}}</td>
+                <td>{{project.stage}}</td>
+                <td>{{project.description}}</td>
+            </tr>
+        </tbody>
+    
+    </table>
+    </div>
+<div class="col-md-6">
+    <canvas baseChart 
+    [data]="pieChartData" 
+    [labels]="pieChartLabels" 
+    [chartType]="pieChartType"
+    [options]="pieChartOptions"
+    [plugins]="pieChartPlugins"
+    [legend]="pieChartLegend"
+    [colors]="pieChartColors">
+  </canvas>
 </div>
 <div class="col-md-6">
-    <h2 style="margin-left: 240px;">Project List</h2>
+    <h2 style="margin-left: 240px;">Employee List</h2>
     <table class="table table-bordered">
         <thead class="table-dark">
-        <tr>
-            <th>Name</th>
-            <th>Stage</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let project of projects">
-            <td>{{project.name}}</td>
-            <td>{{project.stage}}</td>
-            <td>{{project.description}}</td>
-        </tr>
-    </tbody>
-
-</table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Project Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employeeProject of employeeProjects">
+                <td>{{employeeProject.firstName}}</td>
+                <td>{{employeeProject.lastName}}</td>
+                <td>{{employeeProject.projectCount}}</td>
+            </tr>
+        </tbody>
+    
+    </table>
 </div>
 </div>
 </div>
