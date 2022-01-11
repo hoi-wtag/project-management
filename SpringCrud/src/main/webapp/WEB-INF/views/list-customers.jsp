@@ -5,27 +5,20 @@
 <html>
 <head><%@page isELIgnored="false" %>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>javaguides.net</title>
-<link href="<c:url value="/resources/css/bootstrap.min.css" />"
- rel="stylesheet">
-<script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<title>Spring MVC demo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
  <div class="container">
-  <div class="col-md-offset-1 col-md-10">
-   <h2>CRM - Customer Relationship Manager</h2>
-   <hr />
+  <div class="col-md-10">
+   <h2 class="text-center">Customer Dashboard</h2>
 
    <input type="button" value="Add Customer"
     onclick="window.location.href='showForm'; return false;"
     class="btn btn-primary" />
     <br/><br/>
-   <div class="panel panel-info">
-    <div class="panel-heading">
-     <div class="panel-title">Customer List</div>
-    </div>
-    <div class="panel-body">
+    <h3 class="text-left">Customer List</h3>
      <table class="table table-striped table-bordered">
       <tr>
        <th>First Name</th>
@@ -65,9 +58,6 @@
      </table>
 
     </div>
-   </div>
-  </div>
-
  </div>
 </body>
 </html>

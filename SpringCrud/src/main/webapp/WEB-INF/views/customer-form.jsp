@@ -5,23 +5,14 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Spring MVC 5 - form handling | Java Guides</title>
-<link href="<c:url value="/resources/css/bootstrap.min.css" />"rel="stylesheet">
-<script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-
+<title>Spring MVC Crud demo</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
  <div class="container">
-  <div class="col-md-offset-2 col-md-7">
-   <h2 class="text-center">Spring MVC 5 + Hibernate 5 + JSP + MySQL
-    Example</h2>
-   <div class="panel panel-info">
-    <div class="panel-heading">
-     <div class="panel-title">Add Customer</div>
-    </div>
-    <div class="panel-body">
-     <form:form action="saveCustomer" cssClass="form-horizontal"
+   <h2 class="text-left">Add Customer</h2>
+     <form:form action="saveCustomer" Class="form-horizontal"
       method="post" modelAttribute="customer">
 
       <!-- need to associate this data with customer id -->
@@ -31,35 +22,34 @@
        <label for="firstname" class="col-md-3 control-label">First
         Name</label>
        <div class="col-md-9">
-        <form:input path="firstName" cssClass="form-control" />
+        <form:input path="firstName" Class="form-control" />
        </div>
       </div>
       <div class="form-group">
        <label for="lastname" class="col-md-3 control-label">Last
         Name</label>
        <div class="col-md-9">
-        <form:input path="lastName" cssClass="form-control" />
+        <form:input path="lastName" Class="form-control" />
        </div>
       </div>
 
       <div class="form-group">
        <label for="email" class="col-md-3 control-label">Email</label>
        <div class="col-md-9">
-        <form:input path="email" cssClass="form-control" />
+        <form:input path="email" Class="form-control" />
        </div>
       </div>
 
       <div class="form-group">
+      </br>
        <!-- Button -->
        <div class="col-md-offset-3 col-md-9">
-        <form:button cssClass="btn btn-primary">Submit</form:button>
+        <form:button class="btn btn-primary">Submit</form:button>
        </div>
       </div>
 
      </form:form>
     </div>
    </div>
-  </div>
- </div>
 </body>
 </html>
