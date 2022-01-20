@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "projects")
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="project_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long projectId;
 
     private String name;

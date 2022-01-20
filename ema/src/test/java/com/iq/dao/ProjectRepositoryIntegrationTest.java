@@ -16,7 +16,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.Assert.assertEquals;
 
 @ContextConfiguration(classes= EmaApplication.class)
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 @RunWith(SpringRunner.class)
 @DataJpaTest
 @SqlGroup({@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = {"classpath:schema.sql","classpath:data.sql"}),
@@ -31,7 +31,7 @@ public class ProjectRepositoryIntegrationTest {
         Project newProject = new Project("New Test Project", "COMPLETE", "Test Description");
         proRepo.save(newProject);
 
-        assertEquals(5,proRepo.findAll().size());
+        assertEquals(1,proRepo.findAll().size());
 
     }
 }
