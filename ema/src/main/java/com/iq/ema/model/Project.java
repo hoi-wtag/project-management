@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Table(name = "projects")
 public class Project {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="project_seq")
     private long projectId;
 
     private String name;
@@ -18,6 +18,11 @@ public class Project {
 
     private String description;
 
+    public Project(String name, String stage, String description) {
+        this.name = name;
+        this.stage = stage;
+        this.description = description;
+    }
 //    @OneToMany(mappedBy = "project")
 
     @ManyToMany
