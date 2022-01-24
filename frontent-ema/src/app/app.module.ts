@@ -15,6 +15,7 @@ import { DetailsProjectComponent } from './details-project/details-project.compo
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { UserRegisterComponent } from './user-register/user-register.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ProjectListComponent } from './project-list/project-list.component';
     CreateProjectComponent,
     UpdateProjectComponent,
     DetailsProjectComponent,
-    DashboardComponent
+    DashboardComponent,
+    UserRegisterComponent
   ],
   imports: [
     BrowserModule,
