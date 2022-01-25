@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import {SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import { Router } from '@angular/router';
-import { Employee } from '../models/employee';
-import { EmployeeService } from '../services/employee/employee.service';
-import { Project } from '../models/project';
-import { ProjectService } from '../services/project/project.service';
-import { DashboardService } from '../services/dashboard/dashboard.service';
-import { EmployeeProject } from '../models/employee-project';
-import { ChartData } from '../models/chart-data';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee/employee.service';
+import { Project } from '../../models/project';
+import { ProjectService } from '../../services/project/project.service';
+import { DashboardService } from '../../services/dashboard/dashboard.service';
+import { EmployeeProject } from '../../models/employee-project';
+import { ChartData } from '../../models/chart-data';
 
 @Component({
   selector: 'app-dashboard',

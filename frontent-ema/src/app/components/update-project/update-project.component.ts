@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Employee } from '../models/employee';
-import { EmployeeService } from '../services/employee/employee.service';
-import { Project } from '../models/project';
-import { ProjectService } from '../services/project/project.service';
+import { Employee } from '../../models/employee';
+import { EmployeeService } from '../../services/employee/employee.service';
+import { Project } from '../../models/project';
+import { ProjectService } from '../../services/project/project.service';
 
 @Component({
   selector: 'app-update-project',

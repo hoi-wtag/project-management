@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AUTHENTICATED_USER, BasicAuthenticationService } from '../services/basicAuthentication/basic-authentication.service';
+import { AUTHENTICATED_USER, BasicAuthenticationService } from '../../services/basicAuthentication/basic-authentication.service';
 
 @Component({
   selector: 'app-menu',

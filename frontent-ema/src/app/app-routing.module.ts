@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CreateEmployeeComponent } from './create-employee/create-employee.component';
-import { CreateProjectComponent } from './create-project/create-project.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { DetailsEmployeeComponent } from './details-employee/details-employee.component';
-import { DetailsProjectComponent } from './details-project/details-project.component';
-import { EmployeeListComponent } from './employee-list/employee-list.component';
-import { LoginComponent } from './login/login.component';
-import { LogoutComponent } from './logout/logout.component';
-import { ProjectListComponent } from './project-list/project-list.component';
-import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
-import { UpdateProjectComponent } from './update-project/update-project.component';
-import { UserRegisterComponent } from './user-register/user-register.component';
+import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
+import { CreateProjectComponent } from './components/create-project/create-project.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DetailsEmployeeComponent } from './components/details-employee/details-employee.component';
+import { DetailsProjectComponent } from './components/details-project/details-project.component';
+import { EmployeeListComponent } from './components/employee-list/employee-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
+import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
+import { UpdateProjectComponent } from './components/update-project/update-project.component';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
 
 const routes: Routes = [
   {path: 'employees',component: EmployeeListComponent},

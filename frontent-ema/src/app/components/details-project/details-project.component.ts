@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Project } from '../models/project';
-import { ProjectService } from '../services/project/project.service';
+import { Project } from '../../models/project';
+import { ProjectService } from '../../services/project/project.service';
 
 @Component({
   selector: 'app-details-project',
