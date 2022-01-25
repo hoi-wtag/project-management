@@ -3,10 +3,10 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import {SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
 import { Router } from '@angular/router';
 import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import { EmployeeService } from '../services/employee/employee.service';
 import { Project } from '../project';
-import { ProjectService } from '../project.service';
-import { DashboardService } from '../dashboard.service';
+import { ProjectService } from '../services/project/project.service';
+import { DashboardService } from '../services/dashboard/dashboard.service';
 import { EmployeeProject } from '../employee-project';
 import { ChartData } from '../chart-data';
 

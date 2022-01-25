@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Employee } from '../employee';
-import { EmployeeService } from '../employee.service';
+import { EmployeeService } from '../services/employee/employee.service';
 import { Project } from '../project';
-import { ProjectService } from '../project.service';
+import { ProjectService } from '../services/project/project.service';
 
 @Component({
   selector: 'app-create-project',
