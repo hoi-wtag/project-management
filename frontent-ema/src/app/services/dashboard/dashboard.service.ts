@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ChartData } from '../../chart-data';
-import { EmployeeProject } from '../../employee-project';
+import { ChartData } from '../../models/chart-data';
+import { EmployeeProject } from '../../models/employee-project';
 
 @Injectable({
   providedIn: 'root'
