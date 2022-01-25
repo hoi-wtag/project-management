@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { ProjectListComponent } from './project-list/project-list.component';
 import { UserRegisterComponent } from './user-register/user-register.component';
+import { LoginComponent } from './login/login.component';
+import { HttpInterceptorBasicAuthService } from './services/http/http-interceptor-basic-auth.service';
+import { MenuComponent } from './menu/menu.component';
+import { LogoutComponent } from './logout/logout.component';
 
 
 @NgModule({
@@ -30,7 +34,10 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     UpdateProjectComponent,
     DetailsProjectComponent,
     DashboardComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    LoginComponent,
+    MenuComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +46,9 @@ import { UserRegisterComponent } from './user-register/user-register.component';
     FormsModule,
     ChartsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass:HttpInterceptorBasicAuthService , multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

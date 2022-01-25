@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <div><a href="#" class="navbar-brand">
+        PMA</a></div>
+    <ul class="navbar-nav">
+      <li  class="navbar-item">
+        <a *ngIf="isUserLoggedIn()" routerLink="/dashboard" routerLinkActive="active" class="nav-link">Dashboard</a>
+      </li>
+      <li  class="navbar-item">
+        <a  *ngIf="isUserLoggedIn()" routerLink="projects" routerLinkActive="active" class="nav-link">Projects</a>
+      </li>
+      <li class="navbar-item">
+        <a  *ngIf="isUserLoggedIn()" routerLink="employees" routerLinkActive="active" class="nav-link">Employees</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav navbar-collapse justify-content-end">
+        <li><a *ngIf="!isUserLoggedIn()" routerLink="/login" class="nav-link">Login</a></li>
+        <li><a  *ngIf="isUserLoggedIn()" routerLink="/logout" class="nav-link">Logout</a></li>
+</ul>
+</nav>

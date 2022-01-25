@@ -12,17 +12,11 @@ export class DashboardService {
   private baseUrl = "http://localhost:8080/home";
   constructor(private httpClient: HttpClient) { }
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      'Authorization': 'Basic ' + btoa('demo:demo123')
-    })
-  };
 
   getEmployeeProjectCountList():Observable<EmployeeProject[]>{
-    return this.httpClient.get<EmployeeProject[]>(`${this.baseUrl}/employeeprojectcount`,this.httpOptions);
+    return this.httpClient.get<EmployeeProject[]>(`${this.baseUrl}/employeeprojectcount`);
   }
   getProjectStatusData():Observable<ChartData[]>{
-    return this.httpClient.get<ChartData[]>(`${this.baseUrl}/projectstatuscount`,this.httpOptions);
+    return this.httpClient.get<ChartData[]>(`${this.baseUrl}/projectstatuscount`);
   }
 }
