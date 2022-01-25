@@ -28,7 +28,7 @@ export class UpdateProjectComponent implements OnInit {
   }
 
   goToProjectList(){
-    this.router.navigate(['/']);
+    this.router.navigate(['/projects']);
   }
   onSubmit() {
     this.projectService.updateProject(this.projectId,this.project).subscribe(data=>{

@@ -20,11 +20,11 @@ export class UserRegisterComponent implements OnInit {
   saveUser(){
     this.userRegisterService.createUser(this.user).subscribe(data=>{
       console.log(data);
+      this.router.navigate(['login']);
     },
     error => console.log(error));
   }
   onSubmit() {
-    console.log(this.user);
     this.saveUser();
   }
 

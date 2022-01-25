@@ -1,15 +1,20 @@
 
 <div class="container">
-<div class="col-md-6 offset-md-3">
-<H1>Login!</H1>
+<div class="col-md-3 offset-md-3">
+<H1>Login</H1>
   <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
-
-  <div>
-    User Name : <input type="text" name="username" [(ngModel)]="username">
-    Password  : <input type="password" name="password" [(ngModel)]="password">
-    
-    <button (click)=handleBasicAuthLogin() class="btn btn-success">Login</button>
-    
-  </div>
+  <form (ngSubmit) = "handleBasicAuthLogin()">
+    <div class="form-group">
+        <label>User Name</label>
+        <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username">
+    </div>
+    <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password">
+    </div>
+    <br>
+    <button  type="submit" class="btn btn-success">Login</button> 
+    <label>If you don't have user account register <a routerLink="/user-register" > here</a></label>
+  </form>
 </div>
 </div>
