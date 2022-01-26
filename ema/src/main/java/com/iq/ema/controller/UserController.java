@@ -3,6 +3,7 @@ import com.iq.ema.model.AuthenticationBean;
 import com.iq.ema.model.UserAccount;
 import com.iq.ema.service.UserAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ public class UserController {
     BCryptPasswordEncoder bCryptEncoder;
 
     @PostMapping(path="/register")
+    @ResponseStatus(HttpStatus.OK)
     public UserAccount createUserAccount(@RequestBody UserAccount userAccount){
         userAccount.setPassword(bCryptEncoder.encode(userAccount.getPassword()));
         return userAccountService.save(userAccount);

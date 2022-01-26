@@ -14,4 +14,6 @@ public interface EmployeeRepository extends JpaRepository <Employee,Long> {
             "group by e.first_name ,e.last_name " +
             "order by 3 DESC")
     public List<EmployeeProject> employeeProjects();
+
+    public Employee findByEmailId(String value);
 }

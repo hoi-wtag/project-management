@@ -14,6 +14,7 @@ export class UpdateProjectComponent implements OnInit {
 
   projectId!: number;
   employees!: Employee[];
+  selectedEmployees!: number[];
   project: Project = new Project();
   constructor(private projectService: ProjectService,
     private employeeService: EmployeeService,
