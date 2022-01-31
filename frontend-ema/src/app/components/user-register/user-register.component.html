@@ -15,10 +15,10 @@
                 <label>Email</label>
                 <input type="text" class="form-control" id="email" [(ngModel)]= "user.email" name="email" #email="ngModel" email required>
                 <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
-                    <div *ngIf="email.errors?.required">
+                    <div class="alert-danger"  *ngIf="email.errors?.required">
                       Email is required
                     </div>
-                    <div *ngIf="email.errors?.email">
+                    <div class="alert-danger" *ngIf="email.errors?.email">
                       Invalid Email Address
                     </div>
                   </div>
