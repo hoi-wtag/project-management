@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
-import { FormsModule } from '@angular/forms';
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
 import { DetailsEmployeeComponent } from './components/details-employee/details-employee.component';
 import { CreateProjectComponent } from './components/create-project/create-project.component';
@@ -44,7 +44,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:HttpInterceptorBasicAuthService , multi: true }

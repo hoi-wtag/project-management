@@ -3,17 +3,30 @@
 <div class="col-md-3 offset-md-3">
 <H1>Login</H1>
   <div class="alert alert-warning" *ngIf='invalidLogin'>{{errorMessage}}</div>
-  <form (ngSubmit) = "handleBasicAuthLogin()">
+  <form (ngSubmit) = "handleBasicAuthLogin()" #loginForm="ngForm">
     <div class="form-group">
         <label>User Name</label>
-        <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username">
+        <input type="text" class="form-control" id="username" [(ngModel)]="username" name="username" #name="ngModel" required>
+        <div  *ngIf="name.invalid && (name.dirty || name.touched)">
+            <div class="alert-danger" *ngIf="name.errors?.required">
+              User Name is required.
+            </div>
+        </div>
     </div>
     <div class="form-group">
         <label>Password</label>
-        <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password">
+        <input type="password" class="form-control" id="password" [(ngModel)]="password" name="password" minlength="4" #pass="ngModel"  required>
+        <div  *ngIf="pass.invalid && (pass.dirty || pass.touched)">
+            <div class="alert-danger" *ngIf="pass.errors?.required">
+              Password is required.
+            </div>
+            <div class="alert-danger" *ngIf="pass.errors?.minlength">
+              Password length should be greater than 5.
+            </div>
+        </div>
     </div>
     <br>
-    <button  type="submit" class="btn btn-success">Login</button> 
+    <button  type="submit" [disabled]="!loginForm.valid" class="btn btn-success">Login</button> 
     <label>If you don't have user account register <a routerLink="/user-register" > here</a></label>
   </form>
 </div>

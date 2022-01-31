@@ -1,21 +1,42 @@
 <div class="container">
     <div class="col-md-6 offset-md-3">
         <h3>User Registration</h3>
-        <form (ngSubmit) = "onSubmit()">
+        <form (ngSubmit) = "onSubmit()" #registerForm="ngForm">
             <div class="form-group">
                 <label>User Name</label>
-                <input type="text" class="form-control" id="userName" [(ngModel)]= "user.userName" name="userName">
+                <input type="text" class="form-control" id="userName" [(ngModel)]= "user.userName" name="userName" #userName="ngModel" required>
+                <div  *ngIf="userName.invalid && (userName.dirty || userName.touched)">
+                    <div class="alert-danger" *ngIf="userName.errors?.required">
+                      User Name is required.
+                    </div>
+                </div>
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input type="text" class="form-control" id="email" [(ngModel)]= "user.email" name="email">
+                <input type="text" class="form-control" id="email" [(ngModel)]= "user.email" name="email" #email="ngModel" email required>
+                <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
+                    <div *ngIf="email.errors?.required">
+                      Email is required
+                    </div>
+                    <div *ngIf="email.errors?.email">
+                      Invalid Email Address
+                    </div>
+                  </div>
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" id="password" [(ngModel)]= "user.password" name="password">
+                <input type="password" class="form-control" id="password" [(ngModel)]= "user.password" name="password" #pass="ngModel"  required>
+                <div  *ngIf="pass.invalid && (pass.dirty || pass.touched)">
+                    <div class="alert-danger" *ngIf="pass.errors?.required">
+                      Password is required.
+                    </div>
+                    <div class="alert-danger" *ngIf="pass.errors?.minlength">
+                      Password length should be greater than 5.
+                    </div>
+                </div>
             </div>
             <br>
-            <button class="btn btn-success" type="submit">Submit</button>
+            <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Submit</button>
         </form>
             
         </div>

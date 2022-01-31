@@ -29,8 +29,7 @@ public class Project {
         this.description = description;
     }
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
-            fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(name="project_employee",
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id")

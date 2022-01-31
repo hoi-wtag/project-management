@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, Validators } from "@angular/forms";
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
 
