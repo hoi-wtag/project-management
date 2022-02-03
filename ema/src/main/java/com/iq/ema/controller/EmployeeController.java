@@ -48,16 +48,16 @@ public class EmployeeController {
     public Employee updateEmployee(@PathVariable long id, @RequestBody  Employee employeeDetails){
         Employee employee= employeeService.findByEmployeeId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:"+id));
-        Employee updateEmployee= employeeService.save(employee);
+        Employee updateEmployee= employeeService.save(employeeDetails);
         return updateEmployee;
     }
 
-    @PatchMapping(path="/{id}", consumes= "application/json")
-    public Employee partialUpdate(@PathVariable("id") long id, @RequestBody @Valid Employee patchEmployee) {
+    @PatchMapping("/employees/{id}")
+    public Employee partialUpdate(@PathVariable("id") long id, @RequestBody  Employee patchEmployee) {
         Employee employee= employeeService.findByEmployeeId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:"+id));
 
-        if(employee.getEmailId() != null) {
+        if(patchEmployee.getEmailId() != null) {
             employee.setEmailId(patchEmployee.getEmailId());
         }
         if(patchEmployee.getFirstName() != null) {
