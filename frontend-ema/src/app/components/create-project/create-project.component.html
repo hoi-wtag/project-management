@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <select class="form-select" name="employees" multiple="multiple" >
+        <select class="form-select" name="employees" [(ngModel)]= "project.employees"  multiple="multiple">
             <option *ngFor="let employee of employees" [value]="employee" >{{employee.firstName}}</option>
         </select>
         <br>
