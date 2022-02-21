@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/")
@@ -18,8 +20,8 @@ public class UserController {
     BCryptPasswordEncoder bCryptEncoder;
 
     @PostMapping(path="/register")
-    @ResponseStatus(HttpStatus.OK)
-    public UserAccount createUserAccount(@RequestBody UserAccount userAccount){
+    @ResponseStatus(HttpStatus.CREATED)
+    public UserAccount createUserAccount(@RequestBody @Valid UserAccount userAccount){
         userAccount.setPassword(bCryptEncoder.encode(userAccount.getPassword()));
         return userAccountService.save(userAccount);
     }

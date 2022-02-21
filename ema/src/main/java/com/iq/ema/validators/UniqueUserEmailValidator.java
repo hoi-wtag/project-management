@@ -1,21 +1,21 @@
 package com.iq.ema.validators;
 
-import com.iq.ema.model.Employee;
-import com.iq.ema.repository.EmployeeRepository;
+import com.iq.ema.model.UserAccount;
+import com.iq.ema.repository.UserAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class UniqueValidator implements ConstraintValidator<UniqueValue,String> {
+public class UniqueUserEmailValidator implements ConstraintValidator<UniqueUserEmail,String> {
 
     @Autowired
-    EmployeeRepository empRepo;
+    UserAccountRepository userRepo;
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        Employee emp= empRepo.findByEmailId(s);
-        if(emp != null)
+        UserAccount user= userRepo.findByEmail(s);
+        if(user != null)
             return false;
         else
             return true;
