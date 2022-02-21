@@ -10,5 +10,23 @@
     <div>
         <label> <b> Descripttion: </b></label> {{project.description}}
     </div>
+    <h3 class="text-center">Project Employee  List</h3>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of project.employees">
+                <td>{{employee.firstName}}</td>
+                <td>{{employee.lastName}}</td>
+                <td>{{employee.emailId}}</td>
+            </tr>
+        </tbody>
+    
+    </table>
 </div>
 </div>

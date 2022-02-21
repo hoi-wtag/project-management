@@ -11,7 +11,7 @@ import { EmployeeService } from '../../services/employee/employee.service';
 export class DetailsEmployeeComponent implements OnInit {
 
   id!: number;
-  employee!: Employee;
+  employee: Employee=new Employee();
   constructor(private route:ActivatedRoute,private employeeService: EmployeeService) { }
 
   ngOnInit(): void {

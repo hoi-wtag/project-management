@@ -15,18 +15,7 @@ export class EmployeeListComponent implements OnInit {
     private router:Router) { }
 
   ngOnInit(): void {
-    // this.employees=[{
-    //   "id":1,
-    //   "firstName":"Iqbal",
-    //   "lastName":"Hossain",
-    //   "emailId":"demo@aiaibt.com"
-    // },
-    // {
-    //   "id":2,
-    //   "firstName":"Jamil",
-    //   "lastName":"Hasan",
-    //   "emailId":"demo2@demo.com"
-    // }];
+    
     this.getEmployees();
   }
   private getEmployees(){

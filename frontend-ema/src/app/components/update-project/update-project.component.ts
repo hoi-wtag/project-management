@@ -14,7 +14,6 @@ export class UpdateProjectComponent implements OnInit {
 
   projectId!: number;
   employees!: Employee[];
-  selectedEmployees!: number[];
   project: Project = new Project();
   constructor(private projectService: ProjectService,
     private employeeService: EmployeeService,
@@ -31,6 +30,7 @@ export class UpdateProjectComponent implements OnInit {
   goToProjectList(){
     this.router.navigate(['/projects']);
   }
+
   onSubmit() {
     this.projectService.updateProject(this.projectId,this.project).subscribe(data=>{
       this.goToProjectList();

@@ -1,18 +1,13 @@
 package com.iq.ema.controller;
 
 import com.iq.ema.exceptions.ResourceNotFoundException;
-import com.iq.ema.model.Employee;
 import com.iq.ema.model.Project;
-import com.iq.ema.service.EmployeeService;
 import com.iq.ema.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -22,8 +17,6 @@ public class ProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @Autowired
-    private EmployeeService employeeService;
     // Get all projects
 
     @GetMapping("/projects")

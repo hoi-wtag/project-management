@@ -1,21 +1,39 @@
 <div class="container">
 <div class="col-md-6 offset-md-3">
     <h3>Update Employee</h3>
-    <form (ngSubmit) = "onSubmit()">
+    <form #employeeForm="ngForm" (ngSubmit) = "onSubmit()">
         <div class="form-group">
             <label>First Name</label>
-            <input type="text" class="form-control" id="firstName" [(ngModel)]= "employee.firstName" name="firstName">
+            <input type="text" class="form-control" id="firstName" [(ngModel)]= "employee.firstName" name="firstName" #firstName="ngModel" required>
+            <div  *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                <div class="alert-danger" *ngIf="firstName.errors?.required">
+                  First Name is required.
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label>Last Name</label>
-            <input type="text" class="form-control" id="lastName" [(ngModel)]= "employee.lastName" name="lastName">
+            <input type="text" class="form-control" id="lastName" [(ngModel)]= "employee.lastName" name="lastName" #lastName="ngModel" required>
+            <div  *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                <div class="alert-danger" *ngIf="lastName.errors?.required">
+                  Last Name is required.
+                </div>
+            </div>
         </div>
         <div class="form-group">
             <label>Email ID</label>
-            <input type="text" class="form-control" id="emailId" [(ngModel)]= "employee.emailId" name="emailId">
+            <input type="text" class="form-control" id="emailId" [(ngModel)]= "employee.emailId" name="emailId" #email="ngModel" email required>
+            <div *ngIf="!email?.valid && (email?.dirty || email?.touched)" class="error">
+                <div class="alert-danger"  *ngIf="email.errors?.required">
+                  Email is required
+                </div>
+                <div class="alert-danger"  *ngIf="email.errors?.email">
+                  Invalid Email Address
+                </div>
+              </div>
         </div>
         <br>
-        <button class="btn btn-success" type="submit">Submit</button>
+        <button class="btn btn-success" [disabled]="!employeeForm.valid" type="submit">Submit</button>
     </form>
  </div>
 </div>
