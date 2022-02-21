@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import {SingleDataSet, Label, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+import {SingleDataSet, Label } from 'ng2-charts';
 import { Router } from '@angular/router';
 import { Employee } from '../../models/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
@@ -23,11 +23,8 @@ export class DashboardComponent implements OnInit {
   chartDatas!: ChartData[];
   constructor(private employeeService: EmployeeService,
     private dashboardService: DashboardService,
-    private router:Router,
-    
     private projectServcie: ProjectService) {
-      monkeyPatchChartJsTooltip();
-      monkeyPatchChartJsLegend();
+    
      }
 
     public pieChartOptions: ChartOptions = {
