@@ -20,6 +20,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/employees")
+    @ResponseStatus(HttpStatus.OK)
     public List<Employee> getAllEmployees(){
 
         return (List<Employee>) employeeService.getAll();

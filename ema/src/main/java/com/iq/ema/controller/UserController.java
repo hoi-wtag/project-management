@@ -26,6 +26,7 @@ public class UserController {
         return userAccountService.save(userAccount);
     }
     @GetMapping(path = "/basicauth")
+    @ResponseStatus(HttpStatus.OK)
     public AuthenticationBean authenticationBean() {
         //throw new RuntimeException("Some Error has Happened! Contact Support at ***-***");
         return new AuthenticationBean("You are authenticated");

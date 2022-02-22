@@ -20,6 +20,7 @@ public class ProjectController {
     // Get all projects
 
     @GetMapping("/projects")
+    @ResponseStatus(HttpStatus.OK)
     public List<Project> getAllProjects(){
 
         return (List<Project>) projectService.getAll();

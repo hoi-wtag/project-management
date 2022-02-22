@@ -23,7 +23,13 @@ public class Project {
 
     private String description;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH},
+    public Project(String name, String stage, String description) {
+        this.name = name;
+        this.stage = stage;
+        this.description = description;
+    }
+
+    @ManyToMany(cascade = {CascadeType.DETACH,  CascadeType.REFRESH},
             fetch = FetchType.LAZY)
     @JoinTable(name="project_employee",
             joinColumns = @JoinColumn(name = "project_id"),
@@ -34,12 +40,6 @@ public class Project {
 
     public Project(){
 
-    }
-
-    public Project(String name, String stage, String description) {
-        this.name = name;
-        this.stage = stage;
-        this.description = description;
     }
 
     public long getProjectId() {

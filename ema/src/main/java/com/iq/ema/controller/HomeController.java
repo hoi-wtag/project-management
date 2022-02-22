@@ -6,10 +6,8 @@ import com.iq.ema.model.Employee;
 import com.iq.ema.service.EmployeeService;
 import com.iq.ema.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,12 +23,14 @@ public class HomeController {
     private ProjectService projectService;
 
     @GetMapping("/employeeprojectcount")
+    @ResponseStatus(HttpStatus.OK)
     public List<EmployeeProject> employeeProjects(){
 
         return (List<EmployeeProject>) employeeService.employeeProjects();
     }
 
     @GetMapping("/projectstatuscount")
+    @ResponseStatus(HttpStatus.OK)
     public List<ChartData> getProjectStatus(){
 
         return (List<ChartData>) projectService.getProjectStatusData();
