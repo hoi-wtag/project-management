@@ -1,10 +1,13 @@
 package com.iq.ema.controller;
 
+import com.iq.ema.exceptions.EmailIdIsNotUniqueException;
 import com.iq.ema.exceptions.ResourceNotFoundException;
 import com.iq.ema.model.Employee;
 import com.iq.ema.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -26,50 +29,57 @@ public class EmployeeController {
         return (List<Employee>) employeeService.getAll();
     }
 
+    @GetMapping("/employees/{pageNumber}/{pageSize}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Page<Employee>> getAllEmployeesWithPagination(@PathVariable int pageNumber, @PathVariable int pageSize){
+        Page<Employee> employeeWithPagination = employeeService.findEmployeeWithPagination(pageNumber, pageSize);
+        return ResponseEntity.ok(employeeWithPagination);
+    }
+
 
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
-    public Employee createEmployee(@RequestBody @Valid Employee employee){
+    public ResponseEntity<Employee> createEmployee(@RequestBody @Valid Employee employee){
 
-        return employeeService.save(employee);
+        final Employee emp=employeeService.save(employee);
+        if(emp != null)
+            return ResponseEntity.status(HttpStatus.CREATED).body(emp);
+        else
+            return ResponseEntity.badRequest().body(emp);
     }
 
     @GetMapping("/employees/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Employee getEmployeeById(@PathVariable long id){
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable long id){
         Employee employee= employeeService.findByEmployeeId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:"+id));
-        return employee;
+        return ResponseEntity.ok(employee);
     }
 
     // update employee by id rest api
 
     @PutMapping("/employees/{id}")
-    public Employee updateEmployee(@PathVariable long id, @RequestBody  Employee employeeDetails){
-        Employee employee= employeeService.findByEmployeeId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:"+id));
-        Employee updateEmployee= employeeService.save(employeeDetails);
-        return updateEmployee;
-    }
-
-    @PatchMapping("/employees/{id}")
-    public Employee partialUpdate(@PathVariable("id") long id, @RequestBody  Employee patchEmployee) {
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Employee> updateEmployee(@PathVariable long id, @RequestBody  Employee employeeDetails){
         Employee employee= employeeService.findByEmployeeId(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:"+id));
 
-        if(patchEmployee.getEmailId() != null) {
-            employee.setEmailId(patchEmployee.getEmailId());
+        final String oldemail=String.valueOf(employee.getEmailId());
+        final String updatedemail=String.valueOf(employeeDetails.getEmailId());
+        final String checkEmail= String.valueOf(employeeService.findByEmailId(updatedemail));
+        if(oldemail.equals(updatedemail)==false && checkEmail == "null"){
+            employee.setEmailId(employeeDetails.getEmailId());
         }
-        if(patchEmployee.getFirstName() != null) {
-            employee.setFirstName(patchEmployee.getFirstName());
+        if(oldemail.equals(updatedemail)==false && checkEmail != "null"){
+            throw new EmailIdIsNotUniqueException("Provided Email  "+updatedemail+ " address already exist, please try again with different one");
         }
-        if(patchEmployee.getLastName() != null) {
-            employee.setLastName(patchEmployee.getLastName());
-        }
+        employee.setFirstName(employeeDetails.getFirstName());
+        employee.setLastName(employeeDetails.getLastName());
 
-        return employeeService.save(employee);
-
+        Employee updateEmployee= employeeService.save(employee);
+        return ResponseEntity.ok(updateEmployee);
     }
+
     // delete employee rest api
     @DeleteMapping("/employees/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
