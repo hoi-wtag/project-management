@@ -2,19 +2,19 @@ package com.iq.ema.controller;
 
 import com.iq.ema.dto.ChartData;
 import com.iq.ema.dto.EmployeeProject;
-import com.iq.ema.model.Employee;
 import com.iq.ema.service.EmployeeService;
 import com.iq.ema.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("/home")
-public class HomeController {
+@RequestMapping("/api/v1")
+public class EmployeeProjectController {
 
     @Autowired
     private EmployeeService employeeService;
@@ -22,17 +22,17 @@ public class HomeController {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping("/employeeprojectcount")
+    @GetMapping("/projectsCountListPerEmployee")
     @ResponseStatus(HttpStatus.OK)
-    public List<EmployeeProject> employeeProjects(){
-
-        return (List<EmployeeProject>) employeeService.employeeProjects();
+    public ResponseEntity<List<EmployeeProject>> employeeProjects(){
+        List<EmployeeProject> epList=employeeService.employeeProjects();
+        return ResponseEntity.ok(epList);
     }
 
-    @GetMapping("/projectstatuscount")
+    @GetMapping("/projectStatusCount")
     @ResponseStatus(HttpStatus.OK)
-    public List<ChartData> getProjectStatus(){
-
-        return (List<ChartData>) projectService.getProjectStatusData();
+    public ResponseEntity<List<ChartData>> getProjectStatus(){
+        List<ChartData> chartData= projectService.getProjectStatusData();
+        return ResponseEntity.ok(chartData);
     }
 }

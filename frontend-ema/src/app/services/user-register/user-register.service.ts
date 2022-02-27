@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_URL } from 'src/app/app.constant';
 import { UserAccount } from '../../models/user-account';
 
 @Injectable({
@@ -8,11 +9,11 @@ import { UserAccount } from '../../models/user-account';
 })
 export class UserRegisterService {
 
-  private baseUrl = "http://localhost:8080/register";
+
   constructor(private httpClient: HttpClient) { }
 
   createUser(user: UserAccount):Observable<Object>{
-    return this.httpClient.post(`${this.baseUrl}`,user);
+    return this.httpClient.post(`${API_URL}`,user);
   }
 
 }

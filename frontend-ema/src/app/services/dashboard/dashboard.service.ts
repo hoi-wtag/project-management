@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_URL } from 'src/app/app.constant';
 import { ChartData } from '../../models/chart-data';
 import { EmployeeProject } from '../../models/employee-project';
 
@@ -9,14 +10,13 @@ import { EmployeeProject } from '../../models/employee-project';
 })
 export class DashboardService {
 
-  private baseUrl = "http://localhost:8080/home";
   constructor(private httpClient: HttpClient) { }
 
 
   getEmployeeProjectCountList():Observable<EmployeeProject[]>{
-    return this.httpClient.get<EmployeeProject[]>(`${this.baseUrl}/employeeprojectcount`);
+    return this.httpClient.get<EmployeeProject[]>(`${API_URL}/projectsCountListPerEmployee`);
   }
   getProjectStatusData():Observable<ChartData[]>{
-    return this.httpClient.get<ChartData[]>(`${this.baseUrl}/projectstatuscount`);
+    return this.httpClient.get<ChartData[]>(`${API_URL}/projectStatusCount`);
   }
 }

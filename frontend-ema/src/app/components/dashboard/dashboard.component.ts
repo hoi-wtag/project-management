@@ -39,7 +39,7 @@ export class DashboardComponent implements OnInit {
       backgroundColor: ['#dcf858', '#19d863', '#fdf57d']
   }];
   ngOnInit(): void {
-    this.getEmployees();
+    // this.getEmployees();
     this.getProjects();
     this.getEmplyeeProjectCountList();
     this.getProjectStatus();
