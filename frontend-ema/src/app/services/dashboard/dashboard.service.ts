@@ -14,7 +14,7 @@ export class DashboardService {
 
 
   getEmployeeProjectCountList():Observable<EmployeeProject[]>{
-    return this.httpClient.get<EmployeeProject[]>(`${API_URL}/projectsCountListPerEmployee`);
+    return this.httpClient.get<EmployeeProject[]>(`${API_URL}/projectCountListPerEmployee`);
   }
   getProjectStatusData():Observable<ChartData[]>{
     return this.httpClient.get<ChartData[]>(`${API_URL}/projectStatusCount`);

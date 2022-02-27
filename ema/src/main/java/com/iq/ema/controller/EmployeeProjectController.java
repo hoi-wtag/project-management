@@ -22,7 +22,7 @@ public class EmployeeProjectController {
     @Autowired
     private ProjectService projectService;
 
-    @GetMapping("/projectsCountListPerEmployee")
+    @GetMapping("/projectCountListPerEmployee")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<EmployeeProject>> employeeProjects(){
         List<EmployeeProject> epList=employeeService.employeeProjects();
