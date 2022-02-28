@@ -17,6 +17,7 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     
     this.getEmployees();
+    this.getEmployeeWithPagination(0,5);
   }
   private getEmployees(){
     this.employeeService.getEmployeesList().subscribe(data => {
@@ -26,6 +27,13 @@ export class EmployeeListComponent implements OnInit {
   updateEmployee(employeeId : number){
     this.router.navigate(['update-employee',employeeId]);
   }
+
+  getEmployeeWithPagination(offset: number,pageSize: number){
+    this.employeeService.getEmployeeWithPagination(offset,pageSize).subscribe(data => {
+      console.log(data);
+    });
+  }
+
   deleteEmployee(employeeId: number){
     this.employeeService.deleteEmployee(employeeId).subscribe( data =>{
       this.getEmployees();

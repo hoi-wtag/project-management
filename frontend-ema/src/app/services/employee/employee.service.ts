@@ -22,6 +22,10 @@ export class EmployeeService {
     return this.httpClient.get<Employee>(`${this.baseUrl}/${id}`);
   }
 
+  getEmployeeWithPagination(offset: number,pageSize:number):Observable<Employee>{
+    return this.httpClient.get<Employee>(`${this.baseUrl}/${offset}/${pageSize}`);
+  }
+
   updateEmployee(id: number,employee: Employee):Observable<Object>{
     return this.httpClient.put(`${this.baseUrl}/${id}`,employee);
   }
