@@ -13,7 +13,7 @@ export class UserRegisterService {
   constructor(private httpClient: HttpClient) { }
 
   createUser(user: UserAccount):Observable<Object>{
-    return this.httpClient.post(`${API_URL}`,user);
+    return this.httpClient.post(`${API_URL}/register`,user);
   }
 
 }

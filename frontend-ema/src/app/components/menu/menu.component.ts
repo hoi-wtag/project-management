@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AUTHENTICATED_USER, BasicAuthenticationService } from '../../services/basicAuthentication/basic-authentication.service';
+import { AUTHENTICATED_USER, AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +10,7 @@ export class MenuComponent implements OnInit {
 
   checkUserLogIn: boolean = false;
 
-  constructor( private basicAuthenticationService:BasicAuthenticationService) { 
+  constructor( private authenticationService:AuthenticationService) { 
     
   }
 

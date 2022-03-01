@@ -1,5 +1,6 @@
 package com.iq.ema.controller;
 import com.iq.ema.model.AuthRequest;
+import com.iq.ema.model.AuthResponse;
 import com.iq.ema.model.AuthenticationBean;
 import com.iq.ema.model.UserAccount;
 import com.iq.ema.service.UserAccountService;
@@ -39,15 +40,16 @@ public class UserController {
     }
 
     @PostMapping(path="/authenticate")
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+    public ResponseEntity<?> generateToken(@RequestBody AuthRequest authRequest) throws Exception {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
+                    new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
             );
         } catch (Exception ex) {
             throw new Exception("Invalid username/password");
         }
-        return jwtUtil.generateToken(authRequest.getUserName());
+        final String token= jwtUtil.generateToken(authRequest.getUsername());
+        return ResponseEntity.ok(new AuthResponse(token));
     }
 // Basic Authentication endpoint
 //    @GetMapping(path = "/login")
