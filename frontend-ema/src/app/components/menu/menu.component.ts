@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem(AUTHENTICATED_USER)
+    let user = localStorage.getItem(AUTHENTICATED_USER)
     return !(user === null)
   }
 

@@ -12,21 +12,22 @@ import { ProjectListComponent } from './components/project-list/project-list.com
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
 import { UpdateProjectComponent } from './components/update-project/update-project.component';
 import { UserRegisterComponent } from './components/user-register/user-register.component';
+import { AuthGuardService } from './services/authGuard/auth-guard.service';
 
 const routes: Routes = [
-  {path: 'employees',component: EmployeeListComponent},
-  {path: 'create-employee',component: CreateEmployeeComponent},
-  {path: 'update-employee/:id',component: UpdateEmployeeComponent},
-  {path: 'employee-details/:id',component: DetailsEmployeeComponent},
-  {path: 'projects',component: ProjectListComponent},
-  {path: 'create-project',component: CreateProjectComponent},
-  {path: 'update-project/:projectId',component: UpdateProjectComponent},
-  {path: 'project-details/:projectId',component: DetailsProjectComponent},
+  {path: 'employees',component: EmployeeListComponent,canActivate: [AuthGuardService]},
+  {path: 'create-employee',component: CreateEmployeeComponent,canActivate: [AuthGuardService]},
+  {path: 'update-employee/:id',component: UpdateEmployeeComponent,canActivate: [AuthGuardService]},
+  {path: 'employee-details/:id',component: DetailsEmployeeComponent,canActivate: [AuthGuardService]},
+  {path: 'projects',component: ProjectListComponent,canActivate: [AuthGuardService]},
+  {path: 'create-project',component: CreateProjectComponent,canActivate: [AuthGuardService]},
+  {path: 'update-project/:projectId',component: UpdateProjectComponent,canActivate: [AuthGuardService]},
+  {path: 'project-details/:projectId',component: DetailsProjectComponent,canActivate: [AuthGuardService]},
   {path: 'user-register',component: UserRegisterComponent},
-  {path: 'dashboard',component: DashboardComponent},
+  {path: 'dashboard',component: DashboardComponent,canActivate: [AuthGuardService]},
   {path: '',component: LoginComponent},
   {path: 'login',component: LoginComponent},
-  {path: 'logout',component: LogoutComponent}
+  {path: 'logout',component: LogoutComponent,canActivate: [AuthGuardService]}
   // {path: '',redirectTo: 'employees',pathMatch: 'full'}
 ];
 

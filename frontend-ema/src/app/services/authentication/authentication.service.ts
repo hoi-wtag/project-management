@@ -41,9 +41,10 @@ export class AuthenticationService {
       return localStorage.getItem(TOKEN)
   }
 
-  isUserLoggedIn() {
+  get isUserLoggedIn(): boolean {
     let user = localStorage.getItem(AUTHENTICATED_USER)
-    return !(user === null)
+    let authenticatedToek= localStorage.getItem(TOKEN)
+    return (user !== null && authenticatedToek !== null) ? true : false;
   }
 
   logout(){
