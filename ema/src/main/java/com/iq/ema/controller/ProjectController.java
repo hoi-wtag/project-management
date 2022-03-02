@@ -1,5 +1,6 @@
 package com.iq.ema.controller;
 
+import com.iq.ema.dto.ProjectDTO;
 import com.iq.ema.exceptions.ResourceNotFoundException;
 import com.iq.ema.model.Project;
 import com.iq.ema.service.ProjectService;
@@ -23,9 +24,9 @@ public class ProjectController {
 
     @GetMapping("/projects")
     @ResponseStatus(HttpStatus.OK)
-    public List<Project> getAllProjects(){
+    public List<ProjectDTO> getAllProjects(){
 
-        return (List<Project>) projectService.getAll();
+        return (List<ProjectDTO>) projectService.getAll();
     }
 
     // create Project restapi
