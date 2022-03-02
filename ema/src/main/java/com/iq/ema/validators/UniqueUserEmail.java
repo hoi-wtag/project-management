@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = UniqueUserEmailValidator.class)
 public @interface UniqueUserEmail {
-    String message() default "Unique Constraint violated";
+    String message() default "User email is not unique";
 
     Class<?>[] groups() default{};
 

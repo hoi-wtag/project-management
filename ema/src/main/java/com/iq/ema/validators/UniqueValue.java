@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 @Constraint(validatedBy = UniqueValidator.class)
 public @interface UniqueValue {
 
-    String message() default "Unique Constraint violated";
+    String message() default "Employee email is not unique";
 
     Class<?>[] groups() default{};
 

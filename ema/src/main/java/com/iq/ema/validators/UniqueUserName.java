@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = UniqueUsernameValidator.class)
 public @interface  UniqueUserName {
-    String message() default "Unique Constraint violated";
+    String message() default "User name is not unique";
 
     Class<?>[] groups() default{};
 

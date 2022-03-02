@@ -56,7 +56,7 @@ export class EmployeeListComponent implements OnInit {
 
   deleteEmployee(employeeId: number){
     this.employeeService.deleteEmployee(employeeId).subscribe( data =>{
-      this.getEmployees();
+      this.getEmployeeWithPagination();
     }, error => console.log(error))
 
   }

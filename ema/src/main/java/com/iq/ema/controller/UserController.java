@@ -1,7 +1,6 @@
 package com.iq.ema.controller;
 import com.iq.ema.model.AuthRequest;
 import com.iq.ema.model.AuthResponse;
-import com.iq.ema.model.AuthenticationBean;
 import com.iq.ema.model.UserAccount;
 import com.iq.ema.service.UserAccountService;
 import com.iq.ema.util.JwtUtil;
