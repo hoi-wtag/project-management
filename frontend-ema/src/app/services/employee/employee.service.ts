@@ -22,8 +22,8 @@ export class EmployeeService {
     return this.httpClient.get<Employee>(`${this.baseUrl}/${id}`);
   }
 
-  getEmployeeWithPagination(offset: number,pageSize:number):Observable<Employee>{
-    return this.httpClient.get<Employee>(`${this.baseUrl}/${offset}/${pageSize}`);
+  getEmployeeWithPagination(offset: number,pageSize:number):Observable<any>{
+    return this.httpClient.get<any>(`${this.baseUrl}/${offset}/${pageSize}`);
   }
 
   updateEmployee(id: number,employee: Employee):Observable<Object>{

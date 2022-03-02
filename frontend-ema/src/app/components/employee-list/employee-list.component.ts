@@ -11,14 +11,25 @@ import { EmployeeService } from '../../services/employee/employee.service';
 export class EmployeeListComponent implements OnInit {
 
   employees!: Employee[];
+  config: any;
+
   constructor(private employeeService: EmployeeService,
-    private router:Router) { }
+    private router:Router) {
+      this.config = {
+        itemsPerPage: 5,
+        currentPage: 1,
+        totalItems: 11
+      };
+     }
 
   ngOnInit(): void {
     
-    this.getEmployees();
-    this.getEmployeeWithPagination(0,5);
+    // this.getEmployees();
+    this.getEmployeeWithPagination();
   }
+
+
+
   private getEmployees(){
     this.employeeService.getEmployeesList().subscribe(data => {
       this.employees = data;
@@ -28,10 +39,19 @@ export class EmployeeListComponent implements OnInit {
     this.router.navigate(['update-employee',employeeId]);
   }
 
-  getEmployeeWithPagination(offset: number,pageSize: number){
-    this.employeeService.getEmployeeWithPagination(offset,pageSize).subscribe(data => {
-      console.log(data);
+  getEmployeeWithPagination(){
+    
+    this.employeeService.getEmployeeWithPagination(this.config.currentPage-1,this.config.itemsPerPage).subscribe(data => {
+      this.config.totalItems=data.totalElements;
+      this.config.itemsPerPage=data.size;
+      this.employees = data.content;
     });
+  }
+
+  pageChanged(event: any){
+    this.config.currentPage = event;
+    console.log(this.config.currentPage,this.config.itemsPerPage);
+    this.getEmployeeWithPagination();
   }
 
   deleteEmployee(employeeId: number){
