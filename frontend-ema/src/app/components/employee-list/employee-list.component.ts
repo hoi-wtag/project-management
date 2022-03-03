@@ -18,7 +18,7 @@ export class EmployeeListComponent implements OnInit {
       this.config = {
         itemsPerPage: 5,
         currentPage: 1,
-        totalItems: 11
+        totalItems: 0
       };
      }
 

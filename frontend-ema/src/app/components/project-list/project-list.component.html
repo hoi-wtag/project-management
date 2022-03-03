@@ -1,28 +1,31 @@
 <div class="container">
     <button (click) = "createProject()" class="btn btn-primary mt-5">Create Project</button>
     <br/>
-<h2>Project List</h2>
-<table class="table table-bordered">
-    <thead class="table-dark">
-        <tr>
-            <th>Name</th>
-            <th>Stage</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let project of projects">
-            <td>{{project.name}}</td>
-            <td>{{project.stage}}</td>
-            <td>{{project.description}}</td>
-            <td style="width: 300px;">
-                <button (click) = "updateProject(project.projectId)" class="btn btn-success">Update</button>
-                <button (click) = "deleteProject(project.projectId)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
-                <button (click) = "projectDetails(project.projectId)" class="btn btn-info" style="margin-left: 10px;">Veiw</button>  
-            </td>
-        </tr>
-    </tbody>
+<div class="row">
+    <h2>Project List</h2>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Stage</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let project of projects | paginate: config">
+                <td>{{project.name}}</td>
+                <td>{{project.stage}}</td>
+                <td>{{project.description}}</td>
+                <td style="width: 300px;">
+                    <button (click) = "updateProject(project.projectId)" class="btn btn-success">Update</button>
+                    <button (click) = "deleteProject(project.projectId)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+                    <button (click) = "projectDetails(project.projectId)" class="btn btn-info" style="margin-left: 10px;">Veiw</button>  
+                </td>
+            </tr>
+        </tbody>
 
-</table>
+    </table>
+    <pagination-controls (pageChange)="pageChanged($event)" ></pagination-controls>
+</div>
 </div>

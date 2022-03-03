@@ -1,11 +1,11 @@
 package com.iq.ema.dto;
 
+import com.iq.ema.model.Employee;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
-public class ProjectDTO {
-    private long projectId;
-    private String name;
-    private String stage;
-    private String description;
+public class ProjectDTO extends ProjectListDTO{
+    private List<EmployeeListDTO> employees;
 }

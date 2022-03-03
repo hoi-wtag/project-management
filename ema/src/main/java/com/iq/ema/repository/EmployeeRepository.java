@@ -1,7 +1,11 @@
 package com.iq.ema.repository;
 import java.util.List;
+import java.util.Optional;
+
 import com.iq.ema.dto.EmployeeProject;
 import com.iq.ema.model.Employee;
+import com.sun.xml.bind.v2.model.core.ID;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -16,4 +20,7 @@ public interface EmployeeRepository extends JpaRepository <Employee,Long> {
     public List<EmployeeProject> employeeProjects();
 
     public Employee findByEmailId(String value);
+
+    @EntityGraph(value = "employee.projects")
+    Optional<Employee> findByEmployeeId(long id);
 }

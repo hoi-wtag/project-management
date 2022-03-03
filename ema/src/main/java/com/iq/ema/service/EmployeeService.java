@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +18,7 @@ public class EmployeeService {
     @Autowired
     EmployeeRepository empRepo;
 
-    public Iterable<Employee> getAll() {
+    public List<Employee> getAll() {
 
         return empRepo.findAll();
     }
@@ -43,7 +44,7 @@ public class EmployeeService {
     }
 
     public Optional<Employee> findByEmployeeId(long id) {
-        return empRepo.findById(id);
+        return empRepo.findByEmployeeId(id);
     }
 
 

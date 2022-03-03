@@ -1,6 +1,7 @@
 package com.iq.ema.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Entity
 @Table(name = "projects")
+@NamedEntityGraph(name = "project.employees",attributeNodes =@NamedAttributeNode(value = "employees"))
 public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +34,7 @@ public class Project {
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id")
     )
-
+    @JsonIgnoreProperties("projects")
     private List<Employee> employees;
 
     public Project(String name, String stage, String description) {

@@ -1,5 +1,6 @@
 package com.iq.ema.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.iq.ema.validators.UniqueValue;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "employees")
+@NamedEntityGraph(name = "employee.projects",attributeNodes =@NamedAttributeNode(value = "projects"))
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +33,8 @@ public class Employee {
     @UniqueValue
     private String emailId;
 
-    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.REFRESH},
-            fetch = FetchType.LAZY)
-    @JoinTable(name="project_employee",
-            joinColumns = @JoinColumn(name = "employee_id"),
-            inverseJoinColumns = @JoinColumn(name = "project_id")
-    )
-    @JsonIgnore
+    @ManyToMany(mappedBy="employees")
+    @JsonIgnoreProperties("employees")
     private List<Project> projects;
 
     public Employee( String firstName, String lastName, String emailId) {

@@ -17,6 +17,9 @@ export class ProjectService {
   getProjectList():Observable<Project[]>{
     return this.httpClient.get<Project[]>(`${this.baseUrl}`);
   }
+  getProjectWithPagination(offset: number,pageSize:number):Observable<any>{
+    return this.httpClient.get<any>(`${this.baseUrl}/${offset}/${pageSize}`);
+  }
 
   getProjectById(projectId: number):Observable<Project>{
     return this.httpClient.get<Project>(`${this.baseUrl}/${projectId}`);
