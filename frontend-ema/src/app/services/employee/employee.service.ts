@@ -22,6 +22,13 @@ export class EmployeeService {
     return this.httpClient.get<Employee>(`${this.baseUrl}/${id}`);
   }
 
+  searchEmployee(searchString: string):Observable<Employee[]>{
+    return this.httpClient.get<Employee[]>(`${this.baseUrl}/employeeSearchList`,
+    { params: {
+      searchvalue: searchString
+    }  });
+  }
+
   getEmployeeWithPagination(offset: number,pageSize:number):Observable<any>{
     return this.httpClient.get<any>(`${this.baseUrl}/${offset}/${pageSize}`);
   }

@@ -12,6 +12,7 @@ export class EmployeeListComponent implements OnInit {
 
   employees!: Employee[];
   config: any;
+  searchString!: string;
 
   constructor(private employeeService: EmployeeService,
     private router:Router) {
@@ -25,9 +26,27 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     
     // this.getEmployees();
-    this.getEmployeeWithPagination();
+    //this.getEmployeeWithPagination();
+    if(this.searchString==undefined){
+      this.getEmployeeWithPagination();
+    }else{
+      this.searchEmployees()
+    }
   }
 
+
+   searchEmployees(){
+    this.employees=[];
+    this.config.totalItems=0;
+    this.config.itemsPerPage=5;
+    this.config.currentPage=1;
+    this.employeeService.searchEmployee(this.searchString).subscribe(data => {
+      this.config.totalItems=data.length;
+      this.config.itemsPerPage=5;
+      this.config.currentPage=this.config.currentPage-1;
+      this.employees = data;
+    });
+  }
 
 
   private getEmployees(){
@@ -51,7 +70,9 @@ export class EmployeeListComponent implements OnInit {
   pageChanged(event: any){
     this.config.currentPage = event;
     console.log(this.config.currentPage,this.config.itemsPerPage);
-    this.getEmployeeWithPagination();
+    if(this.searchString==undefined){
+      this.getEmployeeWithPagination();
+    }
   }
 
   deleteEmployee(employeeId: number){

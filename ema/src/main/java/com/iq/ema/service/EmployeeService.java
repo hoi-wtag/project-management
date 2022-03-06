@@ -23,6 +23,10 @@ public class EmployeeService {
         return empRepo.findAll();
     }
 
+    public List<Employee> getSearchList(String keyword) {
+        return empRepo.findByKeyword(keyword);
+    }
+
     public Iterable<Employee> getAllById(List<Long> employees) {
 
         return empRepo.findAllById(employees);

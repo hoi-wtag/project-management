@@ -8,7 +8,9 @@ import com.sun.xml.bind.v2.model.core.ID;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
 public interface EmployeeRepository extends JpaRepository <Employee,Long> {
@@ -23,4 +25,7 @@ public interface EmployeeRepository extends JpaRepository <Employee,Long> {
 
     @EntityGraph(value = "employee.projects")
     Optional<Employee> findByEmployeeId(long id);
+
+    @Query(value = "select * from employees e where e.first_name like %:value% or e.last_name like %:value% or e.email_id like %:value% ", nativeQuery = true)
+    List<Employee> findByKeyword(@Param("value") String value);
 }

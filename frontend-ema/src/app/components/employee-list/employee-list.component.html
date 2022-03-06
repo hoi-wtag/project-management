@@ -1,6 +1,18 @@
 <div class="container">
-    <button (click) = "createEmployee()" class="btn btn-primary mt-5">Create Employee</button>
+    <div class="row">
+        <div class="col-md-8">
+            <button (click) = "createEmployee()" class="btn btn-primary mt-5">Create Employee</button>
+        </div>
+        <div class="col-md-4">
+            <div class="input-group mt-5">
+                <input type="text" class="form-control" placeholder="Employee Search" [(ngModel)]="searchString" aria-label="Username" aria-describedby="basic-addon1">
+                <button (click) ="searchEmployees()" class="btn btn-primary " id="basic-addon1">Go</button>
+            </div>
+        </div>
+    </div>
     <br/>
+        <!-- <h3 left>Search : </h3> <input class="form-control" type="text" name="searchTerm" placeholder="Filter by country name" /> -->
+
     <div class="row">
             <h2>Employee List</h2>
             <table class="table table-bordered">

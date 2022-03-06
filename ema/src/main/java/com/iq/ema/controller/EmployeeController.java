@@ -4,7 +4,6 @@ import com.iq.ema.dto.*;
 import com.iq.ema.exceptions.EmailIdIsNotUniqueException;
 import com.iq.ema.exceptions.ResourceNotFoundException;
 import com.iq.ema.model.Employee;
-import com.iq.ema.model.Project;
 import com.iq.ema.service.EmployeeService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -44,6 +42,14 @@ public class EmployeeController {
         Page<EmployeeListDTO> employeeWithPagination = employeeService.findEmployeeWithPagination(pageNumber, pageSize).
                 map(employees -> modelMapper.map(employees, EmployeeListDTO.class));
         return  ResponseEntity.ok(employeeWithPagination);
+    }
+
+    @GetMapping("/employees/employeeSearchList")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<EmployeeListDTO>> getEmployeesSearchList(@RequestParam String searchvalue){
+        List<EmployeeListDTO> employeeSearch = employeeService.getSearchList(searchvalue).stream().map(employees -> modelMapper.map(employees, EmployeeListDTO.class))
+                .collect(Collectors.toList());
+        return  ResponseEntity.ok(employeeSearch);
     }
 
 
