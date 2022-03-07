@@ -4,9 +4,9 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { CreateEmployeeComponent } from './components/create-employee/create-employee.component';
 import { UpdateEmployeeComponent } from './components/update-employee/update-employee.component';
 import { DetailsEmployeeComponent } from './components/details-employee/details-employee.component';
@@ -47,7 +47,8 @@ import { LogoutComponent } from './components/logout/logout.component';
     FormsModule,
     ChartsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass:HttpInterceptorBasicAuthService , multi: true }
