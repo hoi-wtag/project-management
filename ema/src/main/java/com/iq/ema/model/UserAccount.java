@@ -22,12 +22,10 @@ public class UserAccount {
 
     @Column(name = "username")
     @NotBlank(message="*Must give a unique username")
-    @UniqueUserName
     private String userName;
 
     @NotBlank
     @Email(message="*Must be a valid email address")
-    @UniqueUserEmail
     private String email;
 
     @NotBlank(message="*Must give a password")

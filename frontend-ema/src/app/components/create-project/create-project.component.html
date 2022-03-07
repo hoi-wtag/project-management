@@ -34,9 +34,21 @@
                 </div>
             </div>
         </div>
-        <select class="form-select" name="employees" [(ngModel)]= "project.employees"  multiple="multiple">
-            <option *ngFor="let employee of employees" [value]="employee" >{{employee.firstName}}</option>
-        </select>
+        <div class="form-group">
+            <form [formGroup]="dropDownForm">
+              <ng-multiselect-dropdown
+                 [placeholder]="'Choose Employee'"
+                 [settings]="dropdownSettings"
+                 [data]="dropdownListwithData"
+                 formControlName="myItems"
+                 [(ngModel)]="selected"
+                    (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)"
+                    (onDeSelect)="onItemSelect($event)"
+                    (onDeSelectAll)="onDeSelectAll($event)">
+              </ng-multiselect-dropdown>
+            </form>
+          </div>
         <br>
         <button  class="btn btn-success" [disabled]="!projectForm.valid" type="submit">Submit</button>
     </form>

@@ -1,4 +1,4 @@
-package com.iq.ema.model;
+package com.iq.ema.dto;
 
 import java.io.Serializable;
 

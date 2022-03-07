@@ -26,7 +26,6 @@ export class AuthenticationService {
           data => {
             localStorage.setItem(AUTHENTICATED_USER, username);
             localStorage.setItem(TOKEN, `Bearer ${data.token}`);
-            console.log(data);
             return data;
           }
         )
@@ -41,10 +40,20 @@ export class AuthenticationService {
       return localStorage.getItem(TOKEN)
   }
 
+  private tokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
+
   get isUserLoggedIn(): boolean {
-    let user = localStorage.getItem(AUTHENTICATED_USER)
-    let authenticatedToek= localStorage.getItem(TOKEN)
-    return (user !== null && authenticatedToek !== null) ? true : false;
+    let user;
+    let authenticatedToken= localStorage.getItem(TOKEN)
+    if (this.tokenExpired(String(authenticatedToken))) {
+      this.logout();
+    } else {
+      user = localStorage.getItem(AUTHENTICATED_USER)
+    }
+    return (user !== null && authenticatedToken !== null) ? true : false;
   }
 
   logout(){
