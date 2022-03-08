@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,10 +47,8 @@ public class ProjectController {
 
     @PostMapping(path="/projects")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<ProjectDTO> createProject(@RequestBody ProjectDTO projectDTO){
-        // convert DTO to entity
-        Project projectRequest=modelMapper.map(projectDTO,Project.class);
-        Project prObj= projectService.save(projectRequest);
+    public ResponseEntity<ProjectDTO> createProject(@RequestBody @Valid Project project){
+        Project prObj= projectService.save(project);
         // convert entity to DTO
         ProjectDTO projectResponse=modelMapper.map(prObj,ProjectDTO.class);
         return ResponseEntity.ok(projectResponse);

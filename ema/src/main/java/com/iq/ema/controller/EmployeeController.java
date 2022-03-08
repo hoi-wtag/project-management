@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -56,21 +57,18 @@ public class EmployeeController {
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody @Valid Employee employee) throws Exception {
-        final Employee emp=employeeService.save(employee);
+        Employee emp=employeeService.save(employee);
         EmployeeDTO employeeResponse=modelMapper.map(emp,EmployeeDTO.class);
-        if(employeeResponse != null)
-            return ResponseEntity.status(HttpStatus.CREATED).body(employeeResponse);
-        else
-            return ResponseEntity.badRequest().body(null);
+        return ResponseEntity.ok(employeeResponse);
     }
 
     @GetMapping("/employees/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable long id){
-        Employee employee= employeeService.findByEmployeeId(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:"+id));
+    public ResponseEntity<Optional<Employee>> getEmployeeById(@PathVariable long id){
+        Optional<Employee> employee= Optional.of(employeeService.findByEmployeeId(id).get());
+//                .orElseThrow(() -> new ResourceNotFoundException("Employee not exist with id:"+id));
         EmployeeDTO employeeResponse=modelMapper.map(employee,EmployeeDTO.class);
-        return ResponseEntity.ok(employeeResponse);
+        return ResponseEntity.ok(employee);
     }
 
     // update employee by id rest api

@@ -21,20 +21,20 @@ public class UserAccount {
     private long userId;
 
     @Column(name = "username")
-    @NotBlank(message="*Must give a username")
-    @UniqueUserName(message = "*Must give an unique username")
+    @NotBlank(message="Must give a username")
+    @UniqueUserName(message = "Must give an unique username")
     private String userName;
 
     @NotBlank
-    @Email(message="*Must be a valid email address")
-    @UniqueUserEmail(message="*Must be an unique user email address")
+    @Email(message="Must be a valid email address")
+    @UniqueUserEmail(message="Must be an unique user email address")
     private String email;
 
-    @NotBlank(message="*Must give a password")
+    @NotBlank(message="Must give a password")
     @Size(min=2, max=50)
     private String password;
 
-    @NotBlank(message="*Must give a role")
+    @NotBlank(message="Must give a role")
     private String role="ADMIN";
 
     private boolean enabled = true;

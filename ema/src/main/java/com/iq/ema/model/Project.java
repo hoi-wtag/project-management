@@ -19,11 +19,11 @@ public class Project {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long projectId;
 
-    @NotBlank(message="*Must give a  name")
+    @NotBlank(message="Must give a  name")
     @Size(min=2, max=50)
     private String name;
 
-    @NotBlank(message="*Must give a stage")
+    @NotBlank(message="Must give a stage")
     private String stage; // NOTSTARTED, COMPLETED, INPROGRESS
 
     private String description;

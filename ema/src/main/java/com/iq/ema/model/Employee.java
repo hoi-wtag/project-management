@@ -20,17 +20,17 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long employeeId;
 
-    @NotBlank(message="*Must give a first name")
+    @NotBlank(message="Must give a first name")
     @Size(min=2, max=50)
     private String firstName;
 
-    @NotBlank(message="*Must give a last name")
+    @NotBlank(message="Must give a last name")
     @Size(min=1, max=50)
     private String lastName;
 
     @NotBlank
-    @Email(message="*Must be a valid email address")
-    @UniqueValue(message="*Must be an unique email address")
+    @Email(message="Must be a valid email address")
+    @UniqueValue(message="Must be an unique email address")
     private String emailId;
 
     @ManyToMany(mappedBy="employees")
