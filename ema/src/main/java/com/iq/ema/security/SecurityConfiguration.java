@@ -17,11 +17,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -75,6 +75,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        List<String> allowedMethods=new ArrayList<>();
+        allowedMethods.add("GET");
+        allowedMethods.add("POST");
+        allowedMethods.add("PUT");
+        allowedMethods.add("DELETE");
+        allowedMethods.add("OPTIONS");
+        CorsConfiguration cors=new CorsConfiguration();
+        cors.setAllowedMethods(allowedMethods);
+        cors.setAllowedOrigins(Collections.singletonList("http://localhost:4200"));
+
+        http.cors().configurationSource(request -> cors.applyPermitDefaultValues());
+
         http.csrf().disable().authorizeRequests().antMatchers(HttpMethod.OPTIONS,"/**")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
