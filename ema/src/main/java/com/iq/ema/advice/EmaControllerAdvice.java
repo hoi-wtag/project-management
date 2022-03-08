@@ -1,6 +1,7 @@
 package com.iq.ema.advice;
 
 import com.iq.ema.dto.ErrorResponse;
+import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,14 @@ public class EmaControllerAdvice extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NoSuchElementException.class)
     public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException noSuchElementException){
         return new ResponseEntity<String>("No value is present in DB,please change your request", HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public  ResponseEntity<Object> handleConstraint(ConstraintViolationException ex,
+                                                    WebRequest request ) {
+
+        ErrorResponse exceptionResponse = new ErrorResponse(HttpStatus.BAD_REQUEST, "Record still have reference from other table",request.getDescription(false));
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 
     @Override
