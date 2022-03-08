@@ -30,6 +30,7 @@ public class Employee {
 
     @NotBlank
     @Email(message="*Must be a valid email address")
+    @UniqueValue(message="*Must be an unique email address")
     private String emailId;
 
     @ManyToMany(mappedBy="employees")

@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,14 +55,13 @@ public class EmployeeController {
 
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeDTO employee) throws Exception {
-        Employee employeeRequest=modelMapper.map(employee,Employee.class);
-        final Employee emp=employeeService.save(employeeRequest);
+    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody @Valid Employee employee) throws Exception {
+        final Employee emp=employeeService.save(employee);
         EmployeeDTO employeeResponse=modelMapper.map(emp,EmployeeDTO.class);
-        if(emp != null)
+        if(employeeResponse != null)
             return ResponseEntity.status(HttpStatus.CREATED).body(employeeResponse);
         else
-            return ResponseEntity.badRequest().body(employeeResponse);
+            return ResponseEntity.badRequest().body(null);
     }
 
     @GetMapping("/employees/{id}")

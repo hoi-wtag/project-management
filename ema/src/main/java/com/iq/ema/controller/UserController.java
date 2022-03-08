@@ -14,6 +14,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -34,10 +36,9 @@ public class UserController {
 
     @PostMapping(path="/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<UserAccountDTO> createUserAccount(@RequestBody  UserAccountDTO userDto) throws Exception {
-        UserAccount userRequest=modelMapper.map(userDto, UserAccount.class);
-        userRequest.setPassword(bCryptEncoder.encode(userRequest.getPassword()));
-        UserAccount user=userAccountService.save(userRequest);
+    public ResponseEntity<UserAccountDTO> createUserAccount(@RequestBody @Valid UserAccount userAccount) throws Exception {
+        userAccount.setPassword(bCryptEncoder.encode(userAccount.getPassword()));
+        UserAccount user=userAccountService.save(userAccount);
         UserAccountDTO userResponse=modelMapper.map(user, UserAccountDTO.class);
         return ResponseEntity.ok(userResponse);
     }

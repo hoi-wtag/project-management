@@ -39,10 +39,6 @@ public class EmployeeService {
     }
 
     public Employee save(Employee employee) throws Exception {
-        Employee checkMailAddress=empRepo.findByEmailId(employee.getEmailId());
-        if(checkMailAddress!=null){
-            throw new Exception("Email Address Already exists, please try with another one");
-        }
         return empRepo.save(employee);
     }
 

@@ -14,15 +14,7 @@ public class UserAccountService implements UserDetailsService {
     @Autowired
     UserAccountRepository userAccountRepository;
 
-    public UserAccount save(UserAccount userAccount) throws Exception {
-        UserAccount checkUserName = userAccountRepository.findByUserName(userAccount.getUserName());
-        if(checkUserName!=null){
-            throw new Exception("Username  Already exists, please try with another one");
-        }
-        UserAccount checkUserEmail = userAccountRepository.findByEmail(userAccount.getEmail());
-        if(checkUserEmail!=null){
-            throw new Exception("User Email Address  Already exists, please try with another one");
-        }
+    public UserAccount save(UserAccount userAccount) {
         return userAccountRepository.save(userAccount);
     }
 
