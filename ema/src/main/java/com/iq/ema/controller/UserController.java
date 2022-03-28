@@ -1,8 +1,12 @@
 package com.iq.ema.controller;
+import com.iq.ema.dto.JwtBlacklistDTO;
 import com.iq.ema.dto.AuthRequest;
 import com.iq.ema.dto.AuthResponse;
 import com.iq.ema.dto.UserAccountDTO;
+import com.iq.ema.exceptions.ResourceNotFoundException;
+import com.iq.ema.model.JwtBlacklist;
 import com.iq.ema.model.UserAccount;
+import com.iq.ema.service.JwtBlacklistService;
 import com.iq.ema.service.UserAccountService;
 import com.iq.ema.util.JwtUtil;
 import org.modelmapper.ModelMapper;
@@ -34,6 +38,9 @@ public class UserController {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private  JwtBlacklistService jwtBlacklistService;
+
     @PostMapping(path="/register")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<UserAccountDTO> createUserAccount(@RequestBody @Valid UserAccount userAccount) throws Exception {
@@ -52,8 +59,16 @@ public class UserController {
         } catch (Exception ex) {
             throw new Exception("Invalid username/password");
         }
+
         final String token= jwtUtil.generateToken(authRequest.getUsername());
         return ResponseEntity.ok(new AuthResponse(token));
+    }
+
+    @PostMapping(path="/logout")
+    public ResponseEntity<?> Logout(@RequestBody JwtBlacklistDTO jwtBlacklistDTO) throws Exception {
+        JwtBlacklist jwtBlacklistObj=modelMapper.map(jwtBlacklistDTO,JwtBlacklist.class);
+        jwtBlacklistService.save(jwtBlacklistObj);
+        return ResponseEntity.ok("User logged Out Successfully");
     }
 // Basic Authentication endpoint
 //    @GetMapping(path = "/login")
