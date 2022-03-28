@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { API_URL } from 'src/app/app.constant';
+import { Jwtbalcklist } from 'src/app/models/jwtbalcklist';
 import { AUTHENTICATED_USER, AuthenticationService } from '../../services/authentication/authentication.service';
 
 @Component({
@@ -21,6 +24,13 @@ export class MenuComponent implements OnInit {
   isUserLoggedIn() {
     let user = localStorage.getItem(AUTHENTICATED_USER)
     return !(user === null)
+  }
+
+  logout(){
+    this.authenticationService.UserBlackListed().subscribe(data=>{
+      // this.authenticationService.clearLocalStorageData();
+    },
+    error => console.log(error));
   }
 
 }

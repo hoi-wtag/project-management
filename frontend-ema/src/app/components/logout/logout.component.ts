@@ -11,7 +11,7 @@ export class LogoutComponent implements OnInit {
   constructor(private authenticationService:AuthenticationService) { }
 
   ngOnInit(): void {
-    this.authenticationService.logout();
+    this.authenticationService.clearLocalStorageData();
   }
 
 }

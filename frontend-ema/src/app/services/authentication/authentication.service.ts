@@ -1,8 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { API_URL } from 'src/app/app.constant';
+import { Jwtbalcklist } from 'src/app/models/jwtbalcklist';
 
 export const TOKEN = 'token'
 export const AUTHENTICATED_USER = 'authenticaterUser'
@@ -36,6 +38,14 @@ export class AuthenticationService {
     return localStorage.getItem(AUTHENTICATED_USER)
   }
 
+  UserBlackListed(){
+     let token=this.getAuthenticatedToken()
+        return this.http.post<Jwtbalcklist>(`${API_URL}/logout`,{
+          token
+        }
+      );
+  }
+
   getAuthenticatedToken(){
       return localStorage.getItem(TOKEN)
   }
@@ -49,14 +59,14 @@ export class AuthenticationService {
     let user;
     let authenticatedToken= localStorage.getItem(TOKEN)
     if (this.tokenExpired(String(authenticatedToken))) {
-      this.logout();
+      this.clearLocalStorageData();
     } else {
       user = localStorage.getItem(AUTHENTICATED_USER)
     }
     return (user !== null && authenticatedToken !== null) ? true : false;
   }
 
-  logout(){
+  clearLocalStorageData(){
    let authenticatedUser =localStorage.removeItem(AUTHENTICATED_USER)
    let authenticatedToek=localStorage.removeItem(TOKEN)
     if (authenticatedToek == null && authenticatedUser == null) {
